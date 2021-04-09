@@ -43,16 +43,6 @@ public class Money implements Expression {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(amount);
-    }
-
-    @Override
-    public String toString() {
-        return "Money{" + "amount=" + amount + ", currency='" + currency + '\'' + '}';
-    }
-
-    @Override
     public Expression plus(Expression addend) {
         return new Sum(this, addend);
     }

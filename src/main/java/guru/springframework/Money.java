@@ -2,7 +2,7 @@ package guru.springframework;
 
 import java.util.Objects;
 
-public class Money {
+public class Money implements Expression {
 
     protected int amount;
     protected String currency;
@@ -30,6 +30,11 @@ public class Money {
     }
 
     @Override
+    public Money reduce(String to) {
+        return this;
+    }
+
+    @Override
     public boolean equals(Object o) {
         Money money = (Money) o;
         return amount == money.amount
@@ -44,6 +49,10 @@ public class Money {
     @Override
     public String toString() {
         return "Money{" + "amount=" + amount + ", currency='" + currency + '\'' + '}';
+    }
+
+    public Expression plus(Money addend) {
+        return new Sum(this, addend);
     }
 
 }
